@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ASTA — Astronomy Student Association</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Syne:wght@300;400;600;700&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- Star Canvas -->
+<canvas id="starCanvas"></canvas>
+
+<!-- ─── NAVBAR ─── -->
+<nav class="navbar" id="navbar">
+  <a class="nav-logo" href="#">
+    <svg class="nav-logo-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="ASTA logo">
+      <circle cx="20" cy="20" r="19" stroke="url(#nLogoGrad)" stroke-width="1.5"/>
+      <circle cx="20" cy="20" r="8" fill="url(#nLogoGrad)" opacity="0.9"/>
+      <ellipse cx="20" cy="20" rx="18" ry="6" stroke="url(#nLogoGrad2)" stroke-width="1" opacity="0.6"/>
+      <circle cx="32" cy="14" r="3" fill="#7efeff" opacity="0.8"/>
+      <defs>
+        <linearGradient id="nLogoGrad" x1="0" y1="0" x2="40" y2="40">
+          <stop offset="0%" stop-color="#7b2fff"/>
+          <stop offset="100%" stop-color="#00b4d8"/>
+        </linearGradient>
+        <linearGradient id="nLogoGrad2" x1="0" y1="0" x2="40" y2="0">
+          <stop offset="0%" stop-color="#7b2fff"/>
+          <stop offset="100%" stop-color="#7efeff"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <span class="nav-logo-text">ASTA</span>
+  </a>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a class="nav-link" href="#beranda">Beranda</a></li>
+    <li><a class="nav-link" href="#tentang">Tentang</a></li>
+    <li><a class="nav-link" href="#program">Program</a></li>
+    <li><span class="nav-link nav-daftar" id="navDaftar" role="button" tabindex="0">Daftar</span></li>
+  </ul>
+
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <rect y="4" width="22" height="2" rx="1" fill="currentColor"/>
+      <rect y="10" width="22" height="2" rx="1" fill="currentColor"/>
+      <rect y="16" width="22" height="2" rx="1" fill="currentColor"/>
+    </svg>
+  </button>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero" id="beranda">
+  <div class="hero-content">
+    <div class="hero-badge fade-in" style="--delay:0.1s">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#7efeff"/></svg>
+      Komunitas Astronomi Aktif
+    </div>
+
+    <div class="hero-logo-wrap fade-in" style="--delay:0.2s">
+      <svg class="hero-logo-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="ASTA logo utama">
+        <circle cx="100" cy="100" r="96" stroke="url(#hGrad1)" stroke-width="2" opacity="0.4"/>
+        <circle cx="100" cy="100" r="70" stroke="url(#hGrad1)" stroke-width="1" opacity="0.2"/>
+        <circle cx="100" cy="100" r="44" fill="url(#hGrad2)" opacity="0.95"/>
+        <ellipse cx="100" cy="100" rx="96" ry="28" stroke="url(#hGrad3)" stroke-width="1.5" opacity="0.5"/>
+        <circle cx="100" cy="100" r="28" fill="url(#hGrad4)"/>
+        <circle cx="164" cy="58" r="10" fill="#7efeff" opacity="0.85"/>
+        <circle cx="40" cy="148" r="6" fill="#7b2fff" opacity="0.7"/>
+        <circle cx="160" cy="148" r="4" fill="#00b4d8" opacity="0.8"/>
+        <defs>
+          <linearGradient id="hGrad1" x1="0" y1="0" x2="200" y2="200">
+            <stop offset="0%" stop-color="#7b2fff"/>
+            <stop offset="100%" stop-color="#00b4d8"/>
+          </linearGradient>
+          <radialGradient id="hGrad2" cx="40%" cy="35%">
+            <stop offset="0%" stop-color="#00b4d8" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#7b2fff" stop-opacity="0.9"/>
+          </radialGradient>
+          <linearGradient id="hGrad3" x1="0" y1="0" x2="200" y2="0">
+            <stop offset="0%" stop-color="#7b2fff"/>
+            <stop offset="50%" stop-color="#7efeff"/>
+            <stop offset="100%" stop-color="#7b2fff"/>
+          </linearGradient>
+          <radialGradient id="hGrad4" cx="35%" cy="30%">
+            <stop offset="0%" stop-color="#c4a8ff"/>
+            <stop offset="100%" stop-color="#2d0b6e"/>
+          </radialGradient>
+        </defs>
+      </svg>
+    </div>
+
+    <div class="hero-title fade-in" style="--delay:0.3s">
+      <span class="hero-title-main">ASTA</span>
+      <span class="hero-title-sub">Astronomy Student Association</span>
+    </div>
+
+    <p class="hero-tagline fade-in" style="--delay:0.4s">
+      Jelajahi alam semesta bersama komunitas yang suportif, terstruktur, dan penuh rasa ingin tahu.
+    </p>
+
+    <div class="hero-actions fade-in" style="--delay:0.5s">
+      <button class="btn btn-primary open-form-btn">
+        <span class="btn-glow"></span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Gabung ASTA
+      </button>
+      <a class="btn btn-ghost" href="#tentang">Pelajari Lebih</a>
+    </div>
+
+    <div class="hero-stats fade-in" style="--delay:0.6s">
+      <div class="stat">
+        <span class="stat-num" id="memberCount">—</span>
+        <span class="stat-label">Anggota Aktif</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">4</span>
+        <span class="stat-label">Level Program</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">5</span>
+        <span class="stat-label">Bidang Studi</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">∞</span>
+        <span class="stat-label">Rasa Ingin Tahu</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint" aria-hidden="true">
+    <svg width="24" height="34" viewBox="0 0 24 34" fill="none">
+      <rect x="1" y="1" width="22" height="32" rx="11" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+      <circle class="scroll-dot" cx="12" cy="8" r="3" fill="currentColor" opacity="0.6"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section class="about" id="tentang">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-orbit-wrap">
+          <svg class="about-orbit-svg" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Ilustrasi orbit planet">
+            <circle cx="150" cy="150" r="149" stroke="rgba(123,47,255,0.08)"/>
+            <circle cx="150" cy="150" r="80" stroke="rgba(123,47,255,0.12)" stroke-dasharray="4 6"/>
+            <circle cx="150" cy="150" r="110" stroke="rgba(0,180,216,0.1)" stroke-dasharray="3 8"/>
+            <circle cx="150" cy="150" r="130" stroke="rgba(126,254,255,0.08)" stroke-dasharray="2 10"/>
+            <circle cx="150" cy="150" r="34" fill="url(#aGrad1)" opacity="0.9"/>
+            <circle cx="150" cy="150" r="22" fill="url(#aGrad2)"/>
+            <g class="orbit-planet-1"><circle cx="150" cy="150" r="12" fill="url(#aGrad3)"/></g>
+            <g class="orbit-planet-2"><circle cx="150" cy="150" r="8" fill="url(#aGrad4)"/></g>
+            <g class="orbit-planet-3"><circle cx="150" cy="150" r="6" fill="#7efeff" opacity="0.8"/></g>
+            <circle cx="230" cy="90" r="4" fill="#7efeff" opacity="0.5"/>
+            <circle cx="60" cy="200" r="2" fill="#7b2fff" opacity="0.6"/>
+            <circle cx="240" cy="210" r="3" fill="#00b4d8" opacity="0.5"/>
+            <defs>
+              <radialGradient id="aGrad1" cx="40%" cy="35%">
+                <stop offset="0%" stop-color="#00b4d8" stop-opacity="0.5"/>
+                <stop offset="100%" stop-color="#7b2fff" stop-opacity="0.8"/>
+              </radialGradient>
+              <radialGradient id="aGrad2" cx="35%" cy="30%">
+                <stop offset="0%" stop-color="#c4a8ff"/>
+                <stop offset="100%" stop-color="#2d0b6e"/>
+              </radialGradient>
+              <radialGradient id="aGrad3" cx="35%" cy="30%">
+                <stop offset="0%" stop-color="#7efeff"/>
+                <stop offset="100%" stop-color="#00b4d8"/>
+              </radialGradient>
+              <radialGradient id="aGrad4" cx="35%" cy="30%">
+                <stop offset="0%" stop-color="#ffb347"/>
+                <stop offset="100%" stop-color="#c0392b"/>
+              </radialGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <div class="about-text reveal">
+        <div class="section-tag">
+          <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#7efeff"/></svg>
+          Tentang Kami
+        </div>
+        <h2 class="section-title">Apa itu <span class="highlight">ASTA</span>?</h2>
+        <p>ASTA (Astronomy Science Team/Association) adalah komunitas pecinta astronomi yang bertujuan untuk belajar, berbagi, dan berdiskusi tentang alam semesta 🌌</p>
+        <p>Kami menyediakan ruang untuk semua kalangan, baik pemula maupun yang sudah berpengalaman, dengan sistem pembelajaran dari dasar hingga tingkat lanjut seperti astrofisika 🔭</p>
+        <p>ASTA memiliki beberapa ruang diskusi, mulai dari obrolan santai hingga pembahasan materi dan konsep ilmiah, sehingga anggota dapat berkembang sesuai minat masing-masing 🚀</p>
+        <p>Tujuan kami adalah membangun komunitas yang aktif, nyaman, dan penuh rasa ingin tahu terhadap dunia astronomi. Komunitas 『𝔸𝕊𝕋𝔸』 resmi berdiri pada tanggal 28 April 2026.</p>
+        <div class="about-meta">
+          <div class="meta-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#7efeff" stroke-width="1.5"/><path d="M7 4v3l2 1.5" stroke="#7efeff" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Belajar kapan saja &amp; di mana saja
+          </div>
+          <div class="meta-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-7" stroke="#7efeff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Kurikulum terstruktur &amp; bertahap
+          </div>
+          <div class="meta-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="5" cy="5" r="3" stroke="#7efeff" stroke-width="1.5"/><circle cx="9" cy="9" r="3" stroke="#7efeff" stroke-width="1.5"/></svg>
+            Komunitas aktif &amp; suportif
+          </div>
+        </div>
+        <button class="btn btn-primary about-cta open-form-btn">
+          <span class="btn-glow"></span>
+          Mulai Bergabung
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROGRAM / BIDANG ─── -->
+<section class="program" id="program">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">
+        <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#7efeff"/></svg>
+        Bidang Pembelajaran
+      </div>
+      <h2 class="section-title">Program <span class="highlight">Studi</span></h2>
+      <p class="section-desc">Pilih bidang yang kamu minati dan mulai perjalanan eksplorasi luar angkasamu.</p>
+    </div>
+
+    <div class="features-grid">
+      <!-- Astronomi Dasar -->
+      <div class="feature-card reveal">
+        <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="ikon planet">
+          <circle cx="24" cy="24" r="22" stroke="rgba(123,47,255,0.3)" stroke-width="1"/>
+          <circle cx="24" cy="24" r="12" fill="url(#f1Grad)"/>
+          <ellipse cx="24" cy="24" rx="22" ry="7" stroke="rgba(123,47,255,0.6)" stroke-width="1.5"/>
+          <defs>
+            <radialGradient id="f1Grad" cx="35%" cy="30%">
+              <stop offset="0%" stop-color="#c4a8ff"/>
+              <stop offset="100%" stop-color="#7b2fff"/>
+            </radialGradient>
+          </defs>
+        </svg>
+        <h3>Astronomi Dasar</h3>
+        <p>Planet, tata surya, gerhana — fondasi pertama untuk memahami langit di atas kita.</p>
+      </div>
+
+      <!-- Astrofisika -->
+      <div class="feature-card reveal">
+        <svg class="feature-icon" viewBox="0 0 48 48" fill="none" aria-label="ikon bintang">
+          <circle cx="24" cy="24" r="10" fill="url(#f2Grad)"/>
+          <g opacity="0.6">
+            <line x1="24" y1="4"  x2="24" y2="14" stroke="#00b4d8" stroke-width="1.5"/>
+            <line x1="24" y1="34" x2="24" y2="44" stroke="#00b4d8" stroke-width="1.5"/>
+            <line x1="4"  y1="24" x2="14" y2="24" stroke="#00b4d8" stroke-width="1.5"/>
+            <line x1="34" y1="24" x2="44" y2="24" stroke="#00b4d8" stroke-width="1.5"/>
+            <line x1="9"  y1="9"  x2="16" y2="16" stroke="#7efeff" stroke-width="1"/>
+            <line x1="32" y1="32" x2="39" y2="39" stroke="#7efeff" stroke-width="1"/>
+            <line x1="39" y1="9"  x2="32" y2="16" stroke="#7efeff" stroke-width="1"/>
+            <line x1="9"  y1="39" x2="16" y2="32" stroke="#7efeff" stroke-width="1"/>
+          </g>
+          <defs>
+            <radialGradient id="f2Grad" cx="35%" cy="30%">
+              <stop offset="0%" stop-color="#7efeff"/>
+              <stop offset="100%" stop-color="#00b4d8"/>
+            </radialGradient>
+          </defs>
+        </svg>
+        <h3>Astrofisika</h3>
+        <p>Gravitasi, cahaya, dan hukum fisika yang mengatur semesta — sains di balik keindahan langit.</p>
+      </div>
+
+      <!-- Kosmologi -->
+      <div class="feature-card reveal">
+        <svg class="feature-icon" viewBox="0 0 48 48" fill="none" aria-label="ikon galaksi">
+          <ellipse cx="24" cy="24" rx="20" ry="6" stroke="url(#f3Grad)" stroke-width="1.5" opacity="0.5"/>
+          <ellipse cx="24" cy="24" rx="13" ry="4" stroke="url(#f3Grad)" stroke-width="1.5" opacity="0.7"/>
+          <circle cx="24" cy="24" r="5" fill="url(#f3Grad)"/>
+          <circle cx="24" cy="24" r="2" fill="white" opacity="0.9"/>
+          <circle cx="14" cy="22" r="1.5" fill="#7efeff" opacity="0.5"/>
+          <circle cx="34" cy="26" r="1"   fill="#7efeff" opacity="0.4"/>
+          <defs>
+            <linearGradient id="f3Grad" x1="0" y1="0" x2="48" y2="0">
+              <stop offset="0%" stop-color="#7b2fff"/>
+              <stop offset="100%" stop-color="#7efeff"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <h3>Kosmologi</h3>
+        <p>Big Bang, galaksi, dan alam semesta yang terus berkembang — jawaban atas pertanyaan terbesar.</p>
+      </div>
+
+      <!-- Observasi Langit -->
+      <div class="feature-card reveal">
+        <svg class="feature-icon" viewBox="0 0 48 48" fill="none" aria-label="ikon teleskop">
+          <rect x="20" y="28" width="4" height="14" rx="2" fill="url(#f4Grad)"/>
+          <rect x="16" y="40" width="12" height="3" rx="1.5" fill="url(#f4Grad)" opacity="0.6"/>
+          <ellipse cx="28" cy="22" rx="12" ry="6" transform="rotate(-30 28 22)" fill="url(#f4Grad)" opacity="0.8"/>
+          <circle cx="16" cy="16" r="4" fill="url(#f4Grad)"/>
+          <defs>
+            <linearGradient id="f4Grad" x1="0" y1="0" x2="48" y2="48">
+              <stop offset="0%" stop-color="#00b4d8"/>
+              <stop offset="100%" stop-color="#7b2fff"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <h3>Observasi Langit</h3>
+        <p>Teleskop, bintang, dan aplikasi langit — panduan praktis untuk mengamati langit malam.</p>
+      </div>
+
+      <!-- Teknologi Antariksa -->
+      <div class="feature-card reveal">
+        <svg class="feature-icon" viewBox="0 0 48 48" fill="none" aria-label="ikon roket">
+          <path d="M24 6 C24 6, 32 14, 32 26 L16 26 C16 14, 24 6, 24 6Z" fill="url(#f5Grad)"/>
+          <rect x="18" y="26" width="12" height="6" rx="2" fill="url(#f5Grad)" opacity="0.8"/>
+          <path d="M14 30 Q10 34 12 40 L18 32Z" fill="#7efeff" opacity="0.6"/>
+          <path d="M34 30 Q38 34 36 40 L30 32Z" fill="#7efeff" opacity="0.6"/>
+          <circle cx="24" cy="20" r="4" fill="white" opacity="0.3"/>
+          <defs>
+            <linearGradient id="f5Grad" x1="0" y1="0" x2="0" y2="48">
+              <stop offset="0%" stop-color="#7efeff"/>
+              <stop offset="100%" stop-color="#7b2fff"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <h3>Teknologi Antariksa</h3>
+        <p>Roket, satelit, dan eksplorasi luar angkasa — inovasi manusia dalam menjelajahi kosmos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MODUL / LEVEL ─── -->
+<section class="modules" id="modul">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">
+        <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#7efeff"/></svg>
+        Sistem Level
+      </div>
+      <h2 class="section-title">Modul <span class="highlight">Pembelajaran</span></h2>
+      <p class="section-desc">Berkembang secara bertahap dari pemula hingga kontributor aktif komunitas.</p>
+    </div>
+
+    <div class="modules-timeline">
+      <div class="module-step reveal">
+        <div class="module-dot module-dot-1"><span class="module-dot-num">1</span></div>
+        <div class="module-content">
+          <span class="module-level">LEVEL 1 — PEMULA</span>
+          <h3 class="module-title">Basic Explorer</h3>
+          <p class="module-desc">Pengenalan dasar astronomi — mengenal benda langit, tata surya, dan sejarah penemuan luar angkasa.</p>
+        </div>
+      </div>
+      <div class="module-step reveal">
+        <div class="module-dot module-dot-2"><span class="module-dot-num">2</span></div>
+        <div class="module-content">
+          <span class="module-level">LEVEL 2 — MENENGAH</span>
+          <h3 class="module-title">Space Learner</h3>
+          <p class="module-desc">Mulai memahami konsep fisika luar angkasa, gravitasi, spektrum cahaya, dan siklus bintang.</p>
+        </div>
+      </div>
+      <div class="module-step reveal">
+        <div class="module-dot module-dot-3"><span class="module-dot-num">3</span></div>
+        <div class="module-content">
+          <span class="module-level">LEVEL 3 — LANJUTAN</span>
+          <h3 class="module-title">Deep Space Thinker</h3>
+          <p class="module-desc">Analisis mendalam dan diskusi topik kompleks — kosmologi, astrofisika, dan teknologi antariksa terkini.</p>
+        </div>
+      </div>
+      <div class="module-step reveal">
+        <div class="module-dot module-dot-4"><span class="module-dot-num">4</span></div>
+        <div class="module-content">
+          <span class="module-level">LEVEL 4 — KONTRIBUTOR</span>
+          <h3 class="module-title">Research Member</h3>
+          <p class="module-desc">Berbagi pengetahuan, berkontribusi aktif, dan membantu anggota baru berkembang dalam komunitas ASTA.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box reveal">
+      <h2>Siap Menjelajahi <span class="highlight">Alam Semesta</span>?</h2>
+      <p>Bergabunglah dengan komunitas ASTA dan mulai perjalanan astronomimu hari ini. Gratis, terstruktur, dan menyenangkan.</p>
+      <div class="cta-actions">
+        <button class="btn btn-primary open-form-btn">
+          <span class="btn-glow"></span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Daftar Sekarang
+        </button>
+        <a class="btn btn-ghost" href="#program">Lihat Program</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-brand">
+      <svg class="footer-logo-svg" viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="19" stroke="url(#fLogoGrad)" stroke-width="1.5"/>
+        <circle cx="20" cy="20" r="8" fill="url(#fLogoGrad)" opacity="0.9"/>
+        <ellipse cx="20" cy="20" rx="18" ry="6" stroke="url(#fLogoGrad2)" stroke-width="1" opacity="0.6"/>
+        <circle cx="32" cy="14" r="3" fill="#7efeff" opacity="0.8"/>
+        <defs>
+          <linearGradient id="fLogoGrad" x1="0" y1="0" x2="40" y2="40">
+            <stop offset="0%" stop-color="#7b2fff"/><stop offset="100%" stop-color="#00b4d8"/>
+          </linearGradient>
+          <linearGradient id="fLogoGrad2" x1="0" y1="0" x2="40" y2="0">
+            <stop offset="0%" stop-color="#7b2fff"/><stop offset="100%" stop-color="#7efeff"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span>ASTA</span>
+    </div>
+    <p class="footer-copy">
+      © <span id="footerYear"></span> ASTA — Astronomy Student Association<br>
+      Dibuat dengan ❤️ untuk para penjelajah alam semesta.
+    </p>
+  </div>
+</footer>
+
+<!-- ─── FORM MODAL ─── -->
+<div class="form-overlay hidden" id="formOverlay" role="dialog" aria-modal="true" aria-label="Form Pendaftaran ASTA">
+  <div class="form-modal" id="formModal">
+    <button class="modal-close-btn" id="formCloseBtn" aria-label="Tutup">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+
+    <div class="modal-header">
+      <h2>Daftar ASTA</h2>
+      <p>Isi data di bawah untuk bergabung dengan komunitas astronomi kami.</p>
+    </div>
+
+    <form class="register-form" id="registerForm" novalidate>
+      <div class="form-row">
+        <div class="form-group full-width">
+          <label for="nama">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="4" r="3" stroke="#7efeff" stroke-width="1.5"/><path d="M1 11c0-2.761 2.239-5 5-5s5 2.239 5 5" stroke="#7efeff" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Nama Lengkap
+          </label>
+          <input type="text" id="nama" name="nama" placeholder="Nama lengkapmu..." autocomplete="name"/>
+          <span class="field-error" id="namaError"></span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="usia">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7efeff" stroke-width="1.5"/><path d="M6 3v3l2 1.5" stroke="#7efeff" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Usia
+          </label>
+          <input type="number" id="usia" name="usia" placeholder="Usiamu..." min="10" max="99"/>
+          <span class="field-error" id="usiaError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="gender">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7efeff" stroke-width="1.5"/><circle cx="6" cy="6" r="2" fill="#7efeff"/></svg>
+            Gender
+          </label>
+          <div class="select-wrap">
+            <select id="gender" name="gender">
+              <option value="">Pilih gender...</option>
+              <option value="Laki-laki">Laki-laki</option>
+              <option value="Perempuan">Perempuan</option>
+              <option value="Lainnya">Lainnya</option>
+            </select>
+            <span class="select-arrow">
+              <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </div>
+          <span class="field-error" id="genderError"></span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="1" y="2.5" width="10" height="7" rx="1.5" stroke="#7efeff" stroke-width="1.5"/><path d="M1 4l5 3.5L11 4" stroke="#7efeff" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Email
+        </label>
+        <input type="email" id="email" name="email" placeholder="email@contoh.com" autocomplete="email"/>
+        <span class="field-error" id="emailError"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="whatsapp">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1C3.239 1 1 3.239 1 6c0 .95.25 1.84.688 2.608L1 11l2.45-.672A4.986 4.986 0 006 11c2.761 0 5-2.239 5-5S8.761 1 6 1z" stroke="#7efeff" stroke-width="1.5"/></svg>
+          Nomor WhatsApp
+        </label>
+        <input type="tel" id="whatsapp" name="whatsapp" placeholder="08xxxxxxxxxx" autocomplete="tel"/>
+        <span class="field-error" id="whatsappError"></span>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-submit">
+        <span class="btn-glow"></span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Daftar Sekarang
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- ─── CARD OVERLAY ─── -->
+<!--
+  Struktur:
+  .card-overlay (fixed, overflow-y:auto)
+    └── .card-modal-scroll (flex wrapper, padding, min-height:100%)
+          └── .card-modal (konten: close btn + member card + modal-actions)
+-->
+<div class="card-overlay hidden" id="cardOverlay" role="dialog" aria-modal="true" aria-label="Kartu Anggota ASTA">
+  <div class="card-modal-scroll">
+    <div class="card-modal">
+      <button class="modal-close" id="cardCloseBtn" aria-label="Tutup">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+
+      <!-- Member card — hanya ini yang di-capture html2canvas -->
+      <div class="member-card" id="memberCard">
+        <div class="card-stars">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+
+        <div class="card-header">
+          <svg class="card-planet" viewBox="0 0 56 56" fill="none" aria-hidden="true">
+            <circle cx="28" cy="28" r="27" stroke="rgba(123,47,255,0.3)" stroke-width="1"/>
+            <circle cx="28" cy="28" r="16" fill="url(#cpGrad1)"/>
+            <circle cx="28" cy="28" r="10" fill="url(#cpGrad2)"/>
+            <ellipse cx="28" cy="28" rx="26" ry="8" stroke="url(#cpGrad3)" stroke-width="1.5" opacity="0.7"/>
+            <circle cx="44" cy="18" r="4" fill="#7efeff" opacity="0.7"/>
+            <defs>
+              <radialGradient id="cpGrad1" cx="40%" cy="35%"><stop offset="0%" stop-color="#00b4d8" stop-opacity="0.6"/><stop offset="100%" stop-color="#7b2fff" stop-opacity="0.9"/></radialGradient>
+              <radialGradient id="cpGrad2" cx="35%" cy="30%"><stop offset="0%" stop-color="#c4a8ff"/><stop offset="100%" stop-color="#2d0b6e"/></radialGradient>
+              <linearGradient id="cpGrad3" x1="0" y1="0" x2="56" y2="0"><stop offset="0%" stop-color="#7b2fff"/><stop offset="50%" stop-color="#7efeff"/><stop offset="100%" stop-color="#7b2fff"/></linearGradient>
+            </defs>
+          </svg>
+          <div class="card-header-text">
+            <span class="card-org">ASTA</span>
+            <span class="card-org-full">Astronomy Student Association</span>
+          </div>
+        </div>
+
+        <div class="card-divider"></div>
+
+        <div class="card-id-row">
+          <span class="card-id-label">ID Anggota</span>
+          <span class="card-id-value" id="cardId">ASTA-2025-0000</span>
+        </div>
+
+        <div class="card-info-grid">
+          <div class="card-info-item">
+            <span class="card-info-label">Nama</span>
+            <span class="card-info-value" id="cardName">—</span>
+          </div>
+          <div class="card-info-item">
+            <span class="card-info-label">Usia</span>
+            <span class="card-info-value" id="cardAge">—</span>
+          </div>
+          <div class="card-info-item">
+            <span class="card-info-label">Gender</span>
+            <span class="card-info-value" id="cardGender">—</span>
+          </div>
+          <div class="card-info-item">
+            <span class="card-info-label">Tanggal Daftar</span>
+            <span class="card-info-value" id="cardDate">—</span>
+          </div>
+        </div>
+
+        <div class="card-status">
+          <div class="pulse-dot"></div>
+          ✓ Terdaftar
+        </div>
+
+        <div class="card-footer-bar"></div>
+      </div>
+      <!-- /member-card -->
+
+      <!-- Tombol aksi — di LUAR member-card agar tidak ikut ter-download
+           dan tidak terhalang apapun -->
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="downloadBtn">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 2v8M4 7l3.5 3.5L11 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 13h11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          Download Kartu
+        </button>
+        <a class="btn btn-green" id="grupBtn" href="#" target="_blank" rel="noopener noreferrer">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 1C4.186 1 1.5 3.686 1.5 7c0 1.188.34 2.296.933 3.235L1.5 14l3.87-.909A6.474 6.474 0 007.5 13.5c3.314 0 6-2.686 6-6.5C13.5 3.686 10.814 1 7.5 1z" stroke="currentColor" stroke-width="1.5"/></svg>
+          Gabung Grup
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast notif -->
+<div class="toast hidden" id="toast">
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7l4 4 8-8" stroke="#00ff88" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  Pendaftaran berhasil!
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
